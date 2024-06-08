@@ -2,8 +2,14 @@ const express = require("express");
 const app = express();
 const { createtoDo, updateTodo } = require("./types");
 const { todo } = require("./db");
+const cors = require("cors");
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5173",
+  })
+);
 
 // POST /todo
 app.post("/todo", async (req, res) => {
@@ -32,7 +38,7 @@ app.post("/todo", async (req, res) => {
 app.get("/todos", async (req, res) => {
   const todos = await todo.find({});
   console.log(todos);
-  res.json(todos); // Added response handling
+  res.json(todos);
 });
 
 // PUT /completed
@@ -40,7 +46,6 @@ app.put("/completed", async (req, res) => {
   const updatePayload = req.body;
   const parsedPayload = updateTodo.safeParse(updatePayload); // Ensure you're using updateTodo for parsing
   if (!parsedPayload.success) {
-    // Fixed typo from sucess to success
     res.status(411).json({
       msg: "You sent the wrong input",
     });

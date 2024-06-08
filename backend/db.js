@@ -1,15 +1,7 @@
-/*
- * ToDo{
-    title:string
-    description:string
-    completed:boolean
- }
-*/
-
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  "mongodb+srv://abhinayaman94:14Kitkat54%40@cluster0.9dmlilp.mongodb.net/toDos"
+  "mongodb+srv://abhinayaman94:Figm6QLs3hlarryg@cluster0.pyiyahu.mongodb.net/toDos"
 );
 
 const todoSchema = new mongoose.Schema({
